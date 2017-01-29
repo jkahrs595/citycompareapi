@@ -13,7 +13,6 @@
 var util = require('util');
 var axios = require('axios');
 var Axios = axios.create({
-    baseUrl: 'http://api.sba.gov/geodata',
     headers: {'content-type': 'application/json'}
 });
 
@@ -41,10 +40,10 @@ module.exports = {
  */
 function cities(req, res) {
     // variables defined in the Swagger document can be referenced using req.swagger.params.{parameter_name}
-    var city = 'Bloomington';
-    var state = 'IN';
-    var hello = Axios.get('/all_links_for_city_of/'+city+'/'+state+'.json');
+    let city = req.swagger.params.city.value || 'Bloomington';
+    let state = req.swagger.params.state.value || 'IN';
+    let hello = city+state;
 
-    // this sends back a JSON response which is a single string
-    res.json(hello);
+    Axios.get('http://api.sba.gov/geodata/all_links_for_city_of/'+city+'/'+state+'.json').then(response=>{res.json(response.data)});
+
 }
