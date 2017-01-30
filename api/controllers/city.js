@@ -42,8 +42,9 @@ function cities(req, res) {
     // variables defined in the Swagger document can be referenced using req.swagger.params.{parameter_name}
     let city = req.swagger.params.city.value || 'Bloomington';
     let state = req.swagger.params.state.value || 'IN';
-    let hello = city+state;
 
-    Axios.get('http://api.sba.gov/geodata/all_links_for_city_of/'+city+'/'+state+'.json').then(response=>{res.json(response.data)});
-
+    Axios.get('http://api.sba.gov/geodata/all_links_for_city_of/'+city+'/'+state+'.json')
+        .then(response => {
+            res.json(response.data)
+        });
 }

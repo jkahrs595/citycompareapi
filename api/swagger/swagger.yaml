@@ -22,7 +22,7 @@ paths:
     # binds a127 app logic to a route
     x-swagger-router-controller: city
     get:
-      description: Returns the list of cities in the DB
+      description: Returns the city requested
       # used as the method name of the controller
       operationId: cities
       parameters:
@@ -33,7 +33,7 @@ paths:
           type: string
         - name: state
           in: query
-          description: A zipcode within the city
+          description: The state where the city is
           required: false
           type: string
       responses:
